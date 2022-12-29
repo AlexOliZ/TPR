@@ -8,9 +8,9 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('-t', '--time', nargs='?',required=True, help='periodic sleep time (seconds)')
     args=parser.parse_args()
+    ssl._create_default_https_context = ssl._create_unverified_context
     while(1):
-        ssl._create_default_https_context = ssl._create_unverified_context
-        r = urllib.request.urlopen('https://myproject.local/')
+        r = urllib.request.urlopen('https://myproject.local/ok/')
         print(r.read())
         print(r.status)
         time.sleep(args.time)

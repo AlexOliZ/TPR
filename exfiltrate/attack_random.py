@@ -11,10 +11,9 @@ def main():
     args=parser.parse_args()
     print(args.lower)
     print(args.upper)
-    
-    while(1):
-        ssl._create_default_https_context = ssl._create_unverified_context
-        r = urllib.request.urlopen('https://myproject.local/')
+    ssl._create_default_https_context = ssl._create_unverified_context
+    while(1):    
+        r = urllib.request.urlopen('https://myproject.local/ok/')
         print(r.read())
         print(r.status)
         t = random.randint(args.lower,args.upper)

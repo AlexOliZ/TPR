@@ -1,5 +1,13 @@
 from fastapi import FastAPI, HTTPException, Header
 import requests
+import random
+import string
+from typing import Optional
+
+# sudo docker compose up -d --build
+# sudo docker logs myproject-nginx
+# sudo docker logs myproject-web
+# https://myproject.local/
 
 app = FastAPI()
 
@@ -7,12 +15,10 @@ app = FastAPI()
 async def root():
     return {"Server says It's All Good Man"}
 
-# method to post information to server and write in .bin file (update)
-@app.post("/information")
-async def postInfo(information):
-    pass
+@app.get("/data/{numChars}")
+async def getData(numChars : int):
+    return {'data':''.join(random.choices(string.ascii_lowercase, k=numChars))}
 
-# method to get information from the server ... (download)
-@app.get("/information")
-async def getInfo():
-    pass
+@app.post("/data/")
+async def postData(data: str):
+    return {"received data"}

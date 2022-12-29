@@ -1,1 +1,0 @@
-uvicorn main:app --reload --host $DEV_DOMAIN --port 8000

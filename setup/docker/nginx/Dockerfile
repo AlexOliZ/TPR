@@ -12,7 +12,7 @@ RUN apk update && apk add \
     openssl \
     bash
 
-COPY *.html /usr/share/nginx/html/
+#COPY *.html /usr/share/nginx/html/
 COPY config.ext /etc/nginx/config.ext
 
 COPY ssl/generate-ssl.sh /etc/nginx/generate-ssl.sh
