@@ -1,5 +1,5 @@
-import urllib.request
-import ssl
+import requests
+#import ssl
 import time
 import random
 import argparse
@@ -11,11 +11,14 @@ def main():
     args=parser.parse_args()
     print(args.lower)
     print(args.upper)
-    ssl._create_default_https_context = ssl._create_unverified_context
+    #ssl._create_default_https_context = ssl._create_unverified_context
     while(1):    
-        r = urllib.request.urlopen('https://myproject.local/ok/')
-        print(r.read())
-        print(r.status)
+        numChars = random.randint(100,800000)
+        r = requests.get("https://myproject.local/data/"+str(numChars),verify=False)
+        print(r.status_code,r.content)
+        print(r.content)
+        print(r.status_code)
+        print(numChars)
         t = random.randint(args.lower,args.upper)
         print(t)
         time.sleep(t)

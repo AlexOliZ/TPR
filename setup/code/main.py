@@ -21,4 +21,5 @@ async def getData(numChars : int):
 
 @app.post("/data/")
 async def postData(data: str):
+    print(data)
     return {"received data"}
